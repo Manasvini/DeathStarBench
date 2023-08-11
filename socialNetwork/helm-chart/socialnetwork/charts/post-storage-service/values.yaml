@@ -19,3 +19,13 @@ configMaps:
   - name: service-config.json
     mountPath: /social-network-microservices/config/service-config.json
     value: service-config
+
+annotations:
+  dependson.post-storage-mongodb.bw: "100000"
+  dependson.post-storage-mongodb.latency: "1"
+  dependedby.user-timeline-service.bw: "100000"
+  dependedby.user-timeline-service.latency: "1"
+  dependson.user-service.bw: "100000"
+  dependson.user-service.latency: "1"
+  dependedby.compose-post-service.bw: "100000"
+  dependedby.compose-post-service.latency: "1"

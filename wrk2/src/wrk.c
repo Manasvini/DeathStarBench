@@ -7,6 +7,7 @@
 #include "hdr_histogram.h"
 #include "stats.h"
 #include "assert.h"
+#include "raw_values.h"
 
 // Max recordable latency of 1 day
 #define MAX_LATENCY 24L * 60 * 60 * 1000000
@@ -86,6 +87,9 @@ static void usage() {
            "  Numeric arguments may include a SI unit (1k, 1M, 1G)           \n"
            "  Time arguments may include a time unit (2s, 2m, 2h)            \n");
 }
+int64_t val_idx = 0;
+struct Value *vals= NULL;
+
 
 int main(int argc, char **argv) {
     char *url, **headers = zmalloc(argc * sizeof(char *));
@@ -98,6 +102,9 @@ int main(int argc, char **argv) {
         usage();
         exit(1);
     }
+
+    int64_t num_values_to_record = cfg.duration * cfg.rate;
+    vals = init_values(num_values_to_record);
 
     thread *threads = zcalloc(cfg.num_urls * cfg.threads * sizeof(thread));
     uint64_t connections = cfg.connections / cfg.threads;
@@ -378,6 +385,7 @@ int main(int argc, char **argv) {
         printf("Requests/sec: %9.2Lf\n", total_req_per_s);
         printf("Transfer/sec: %10sB\n", format_binary(total_bytes_per_s));
     }
+    print_values(vals, val_idx);
     return 0;
 }
 
@@ -710,6 +718,11 @@ static int response_complete(http_parser *parser) {
         hdr_record_value(thread->latency_histogram, actual_latency_timing);
         hdr_record_value(thread->real_latency_histogram, actual_latency_timing);
 
+	struct Value v;
+	v.value = actual_latency_timing;
+	v.timestamp = c->actual_latency_start[c->complete & MAXO];
+	add_value(vals, v, val_idx);
+	val_idx++;
         thread->monitored++;
         thread->accum_latency += actual_latency_timing;
         // thread->target  = throughput/10; response side twice the interval.
@@ -1014,6 +1027,7 @@ static void print_units(long double n, char *(*fmt)(long double), int width) {
 
     free(msg);
 }
+
 
 static void print_stats(char *name, stats *stats, char *(*fmt)(long double)) {
     uint64_t max = stats->max;

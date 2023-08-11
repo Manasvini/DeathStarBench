@@ -19,3 +19,7 @@ configMaps:
   - name: service-config.json
     mountPath: /social-network-microservices/config/service-config.json
     value: service-config
+
+annotations:
+  dependson.user-timeline-service.latency: "5"
+  dependson.user-timeline-service.bw: "10000"

@@ -18,3 +18,7 @@ configMaps:
   - name: mongod.conf
     mountPath: /social-network-microservices/config/mongod.conf
     value: mongod
+
+annotations:
+  dependedby.url-shorten-service.bw: "1000"
+  dependedby.url-shorten-service.latency: "1"

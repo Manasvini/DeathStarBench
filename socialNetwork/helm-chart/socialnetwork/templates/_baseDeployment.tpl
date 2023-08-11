@@ -15,7 +15,14 @@ spec:
       labels:
         service: {{ .Values.name }}
         app: {{ .Values.name }}
+      {{- if .Values.annotations}}
+      annotations:
+      {{- with .Values.annotations }}
+      {{ toYaml . | nindent 8  }}
+	  {{- end }}
+      {{- end }}
     spec:
+      schedulerName: epl-scheduler
       {{- if .Values.nodeName}}
       nodeName: {{ .Values.nodeName }}
       {{ end }}

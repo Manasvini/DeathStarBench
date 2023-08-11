@@ -19,3 +19,9 @@ configMaps:
   - name: service-config.json
     mountPath: /social-network-microservices/config/service-config.json
     value: service-config
+
+annotations:
+  dependson.social-graph-mongodb.bw: "1000000"
+  dependson.social-graph-mongodb.latency: "10"
+  dependson.user-service.bw: "100000"
+  dependson.user-service.latency: "10"

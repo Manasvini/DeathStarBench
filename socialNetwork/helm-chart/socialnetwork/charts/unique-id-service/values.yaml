@@ -19,3 +19,9 @@ configMaps:
   - name: service-config.json
     mountPath: /social-network-microservices/config/service-config.json
     value: service-config
+
+annotations:
+  dependson.compose-post-service.bw: "10000"
+  dependson.compose-post-service.latency: "1"
+  dependedby.nginx-thrift.bw: "10000"
+  dependedby.nginx-thrift.latency: "1"

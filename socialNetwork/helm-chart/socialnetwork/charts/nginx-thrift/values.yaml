@@ -64,3 +64,13 @@ configMaps:
   - name: nginx.conf
     mountPath: /usr/local/openresty/nginx/conf/nginx.conf 
     value: nginx
+
+annotations:
+  dependson.url-shorten-service.bw: "10000"
+  dependson.url-shorten-service.latency: "1"
+  dependson.unique-id-service.bw: "10000"
+  dependson.unique-id-service.latency: "1"
+  dependson.text-service.bw: "1000000"
+  dependson.text-service.latency: "10"
+  dependson.media-service.bw: "1000000"
+  dependson.media-service.latency: "10"

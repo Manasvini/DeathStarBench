@@ -19,3 +19,13 @@ configMaps:
   - name: service-config.json
     mountPath: /social-network-microservices/config/service-config.json
     value: service-config
+
+annotations:
+  dependson.media-mongodb.bw: "1000000"
+  dependson.media-mongodb.latency: "10"
+  dependson.compose-post-service.bw: "1000000"
+  dependson.compose-post-service.latency: "10"
+  dependedby.nginx-thrift.bw: "100000"
+  dependedby.nginx-thrift.latency: "10"
+  dependedby.media-frontend.bw: "100000"
+  dependedby.media-frontend.latency: "10"
