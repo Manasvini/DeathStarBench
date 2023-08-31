@@ -21,8 +21,6 @@ configMaps:
     value: service-config
 
 annotations:
-  dependedby.user-service.bw: "10000"
-  dependedby.user-service.latency: "1"
   dependedby.text-service.bw: "10000"
   dependedby.text-service.latency: "1"
   dependedby.media-service.bw: "1000000"

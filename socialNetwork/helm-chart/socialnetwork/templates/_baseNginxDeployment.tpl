@@ -4,6 +4,7 @@ kind: Deployment
 metadata:
   labels:
     service: {{ .Values.name }}
+
   name: {{ .Values.name }}
 spec: 
   replicas: {{ .Values.replicas | default .Values.global.replicas }}
@@ -15,7 +16,16 @@ spec:
       labels:
         service: {{ .Values.name }}
         app: {{ .Values.name }}
+      {{- if .Values.annotations}}
+      annotations:
+        {{- with .Values.annotations }}
+          {{ toYaml . | nindent 8  }}
+        {{- end }}
+      {{- end }}
+
+
     spec: 
+      schedulerName: epl-scheduler
       containers:
       {{- with .Values.container }}
       - name: "{{ .name }}"

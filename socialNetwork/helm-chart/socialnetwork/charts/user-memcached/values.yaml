@@ -5,7 +5,7 @@ ports:
     targetPort: 11211
 
 container:
-  image: library/memcached
+  image: memcached
   imageVersion: 1.6.7
   name: user-memcached
   ports: 
