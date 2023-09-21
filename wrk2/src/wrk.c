@@ -12,7 +12,7 @@
 // Max recordable latency of 1 day
 #define MAX_LATENCY 24L * 60 * 60 * 1000000
 uint64_t raw_latency[MAXTHREADS][MAXL];
-
+uint64_t timestamps[MAXTHREADS][MAXL];
 static struct config {
     uint64_t num_urls;
     uint64_t threads;
@@ -280,7 +280,7 @@ int main(int argc, char **argv) {
                 uint64_t nnum = MAXL;
                 if ((t->complete) < nnum) nnum = t->complete;
                 for (uint64_t j=1; j < nnum; ++j)
-                    fprintf(ff, "%" PRIu64 "\n", raw_latency[i][j]);
+                    fprintf(ff, "%lu %" PRIu64 "\n", timestamps[i][j], raw_latency[i][j]);
                 fclose(ff);
             }
 
@@ -737,6 +737,7 @@ static int response_complete(http_parser *parser) {
         }
         if (cfg.print_all_responses && ((thread->complete) < MAXL))
             raw_latency[thread->tid][thread->complete] = actual_latency_timing;
+            timestamps[thread->tid][thread->complete] = now 
     }
 
     // Count all responses (including pipelined ones:)

@@ -19,3 +19,7 @@ configMaps:
   - name: service-config.json
     mountPath: /social-network-microservices/config/service-config.json
     value: service-config
+
+annotations:
+  dependedby.media-service.bw: "800000"
+  dependedby.media-service.latency: "1"

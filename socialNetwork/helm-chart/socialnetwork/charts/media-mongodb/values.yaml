@@ -20,5 +20,5 @@ configMaps:
     value: mongod
 
 annotations:
-  dependedby.media-service.bw: "1000000"
+  dependedby.media-service.bw: "8000000"
   dependedby.media-service.latency: "10"

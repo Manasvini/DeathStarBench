@@ -19,3 +19,7 @@ configMaps:
   - name: service-config.json
     mountPath: /social-network-microservices/config/service-config.json
     value: service-config
+
+annotations:
+  dependedby.url-shorten-service.bw: "8000"
+  dependedby.url-shorten-service.latency: "1"

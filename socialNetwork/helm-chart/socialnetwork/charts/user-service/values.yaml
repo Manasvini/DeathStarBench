@@ -21,13 +21,15 @@ configMaps:
     value: service-config
 
 annotations:
-  dependedby.social-graph-service.bw: "100000"
+  dependedby.social-graph-service.bw: "800000"
   dependedby.social-graph-service.latency: "10"
-  dependson.user-mongodb.bw: "100000"
+  dependson.user-mongodb.bw: "800000"
   dependson.user-mongodb.latency: "10"
-  dependedby.user-timeline-service.bw: "100000"
+  dependson.user-memcached.bw: "80000"
+  dependson.user-memcached.latency: "1"
+  dependedby.user-timeline-service.bw: "800000"
   dependedby.user-timeline-service.latency: "1"
-  dependedby.post-storage-service.bw: "100000"
+  dependedby.post-storage-service.bw: "800000"
   dependedby.post-storage-service.latency: "1"
-  dependedby.text-service.bw: "10000"
+  dependedby.text-service.bw: "80000"
   dependedby.text-service.latency: "1"

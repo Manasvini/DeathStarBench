@@ -45,5 +45,5 @@ configMaps:
     value: service-config
 
 annotations:
-  dependson.media-service.bw: "1000000"
+  dependson.media-service.bw: "8000000"
   dependson.media-service.latency: "10"

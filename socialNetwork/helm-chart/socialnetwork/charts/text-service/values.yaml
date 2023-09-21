@@ -21,9 +21,9 @@ configMaps:
     value: service-config
 
 annotations:
-  dependson.user-service.bw: "10000"
+  dependson.user-service.bw: "80000"
   dependson.user-service.latency: "1"
-  dependson.compose-post-service.bw: "10000"
+  dependson.compose-post-service.bw: "800000"
   dependson.compose-post-service.latency: "1"
-  dependedby.nginx-thrift.bw: "1000000"
+  dependedby.nginx-thrift.bw: "8000000"
   dependedby.nginx-thrift.latency: "10"

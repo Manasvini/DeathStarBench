@@ -17,3 +17,7 @@ configMaps:
   - name: redis.conf
     mountPath: /social-network-microservices/config/redis.conf
     value: redis
+
+annotations:
+  dependedby.social-graph-service.bw: "800000"
+  dependedby.social-graph-service.latency: "1"

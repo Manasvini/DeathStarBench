@@ -19,3 +19,7 @@ configMaps:
   - name: service-config.json
     mountPath: /social-network-microservices/config/service-config.json
     value: service-config
+
+annotations:
+ dependson.user-memcached.bw: "100000"
+ dependson.user-memcached.latency: "1"

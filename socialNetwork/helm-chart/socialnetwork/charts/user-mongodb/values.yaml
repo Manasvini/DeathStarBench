@@ -20,5 +20,5 @@ configMaps:
     value: mongod
 
 annotations:
-  dependedby.user-service.bw: "100000"  
+  dependedby.user-service.bw: "800000"  
   dependedby.user-service.latency: "10"

@@ -19,3 +19,9 @@ configMaps:
   - name: service-config.json
     mountPath: /social-network-microservices/config/service-config.json
     value: service-config
+
+annotations:
+ dependedby.user-service.bw: "800000"
+ dependedby.user-service.latency: "1"
+ dependedby.user-mention-service.bw: "160000"
+ dependedby.user-mention-service.latency: "1"

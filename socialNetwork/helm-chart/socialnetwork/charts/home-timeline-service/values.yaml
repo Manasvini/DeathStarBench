@@ -22,4 +22,10 @@ configMaps:
 
 annotations:
   dependson.user-timeline-service.latency: "5"
-  dependson.user-timeline-service.bw: "10000"
+  dependson.user-timeline-service.bw: "80000"
+  dependson.home-timeline-redis.bw: "1600000"
+  dependson.home-timeline-redis.latency: "1"
+  dependedby.nginx-thrift.bw: "80000000"
+  dependedby.compose-post-service.bw: "40000"
+  dependson.post-storage-service.bw: "28000000"
+  dependson.social-graph-service.bw: "280000"

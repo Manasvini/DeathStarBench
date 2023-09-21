@@ -24,7 +24,7 @@ spec:
       {{- end }}
 
 
-    spec: 
+    spec:
       schedulerName: epl-scheduler
       containers:
       {{- with .Values.container }}

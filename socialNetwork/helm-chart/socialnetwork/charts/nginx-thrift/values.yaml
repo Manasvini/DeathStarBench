@@ -66,11 +66,14 @@ configMaps:
     value: nginx
 
 annotations:
-  dependson.url-shorten-service.bw: "10000"
+  dependson.home-timeline-service.bw: "80000000"
+  dependson.compose-post-service.bw: "40000"
+  dependson.url-shorten-service.bw: "80000"
   dependson.url-shorten-service.latency: "1"
-  dependson.unique-id-service.bw: "10000"
+  dependson.unique-id-service.bw: "80000"
   dependson.unique-id-service.latency: "1"
-  dependson.text-service.bw: "1000000"
+  dependson.text-service.bw: "8000000"
   dependson.text-service.latency: "10"
-  dependson.media-service.bw: "1000000"
+  dependson.media-service.bw: "8000000"
   dependson.media-service.latency: "10"
+  dependson.user-timeline-service.bw: "8000000"

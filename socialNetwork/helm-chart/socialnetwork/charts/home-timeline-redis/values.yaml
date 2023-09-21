@@ -17,3 +17,7 @@ configMaps:
   - name: redis.conf
     mountPath: /social-network-microservices/config/redis.conf
     value: redis
+
+annotations:
+  dependedby.home-timeline-service.latency: "1"
+  dependedby.home-timeline-service.bw: "1600000"

@@ -20,5 +20,5 @@ configMaps:
     value: mongod
 
 annotations:
-  dependedby.user-timeline-service.bw: "1000000"
+  dependedby.user-timeline-service.bw: "80000000"
   dependedby.user-timeline-service.latency: "10"

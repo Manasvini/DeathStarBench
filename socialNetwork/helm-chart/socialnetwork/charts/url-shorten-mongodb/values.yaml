@@ -20,5 +20,5 @@ configMaps:
     value: mongod
 
 annotations:
-  dependedby.url-shorten-service.bw: "1000"
+  dependedby.url-shorten-service.bw: "8000"
   dependedby.url-shorten-service.latency: "1"
